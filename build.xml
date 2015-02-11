@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="SampleOpenCrxClient" default="run" basedir=".">
+
+	<property environment="env"/>
+	<property name="java.build.platform" value="jre-1.7" />
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="build/${java.build.platform}" />
+	<property name="lib.dir" value="lib" />
+
+	<path id="project.class.path">
+		<fileset dir="${lib.dir}" includes="*.jar"/>
+	</path>
+	
+	<target name="javac" depends="clean" description="Compile java source">
+		<mkdir dir="${build.dir}"/>
+		<javac includeantruntime="false" srcdir="${src.dir}" includes="**" encoding="utf-8"
+			destdir="${build.dir}"
+			source="1.7" target="1.7" nowarn="true"
+			debug="true" debuglevel="lines,vars,source">
+			<classpath refid="project.class.path"/>
+		</javac>
+	</target>
+	
+	<target name="build" depends="javac" description="Build the jar file">
+		<jar basedir="${build.dir}" destfile="${lib.dir}/sample.jar" />
+	</target>
+	
+	<target name="run" depends="build" description="Run this project">
+		<java dir="${build.dir}" classname="SampleOpenCrxClient">
+			<sysproperty key="java.protocol.handler.pkgs" value="org.openmdx.kernel.url.protocol" />
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+			</classpath>
+		</java>
+	</target>
+	
+	<target name="clean" description="Cleans this project">
+		<delete dir="${build.dir}" failonerror="false" />
+	</target>	
+</project>

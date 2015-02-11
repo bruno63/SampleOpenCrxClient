@@ -1,0 +1,8 @@
+lib
+bin
+.tmp
+build
+*.log
+*.json
+.classpath
+.project
