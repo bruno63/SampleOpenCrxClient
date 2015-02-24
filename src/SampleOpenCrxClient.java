@@ -239,7 +239,7 @@ public class SampleOpenCrxClient {
 		// TODO: updateContact(id, Contact)
 		// TODO: deleteContact(id)
 		// ------------------------------
-		// _client.listAddressbooks();
+		_client.listAddressbooks();
 		// TODO: get all Contacts per Addressbook (incl. iterations over
 		// batches)
 		// String _id = _client.createAddressbook("*TEST001*");
